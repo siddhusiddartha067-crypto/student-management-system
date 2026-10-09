@@ -3,33 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Management System</title>
+  <title>CareerPilot AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container" id="home">
-    <h1>Student Management System</h1>
-    <p>Welcome to my Student Management System.</p>
-    <button onclick="login()">Login</button>
-    <button onclick="openDashboard()">Student Dashboard</button>
-  </div>
+  <header>
+    <h1>🚀 CareerPilot AI</h1>
+    <p>Your Study, Skills & Career Companion</p>
+  </header>
 
-  <div class="container" id="loginPage" hidden>
-    <h2>Student Login</h2>
-    <input id="studentName" type="text" placeholder="Enter your name">
-    <button onclick="enterDashboard()">Continue</button>
-    <button onclick="goHome()">Back</button>
-    <p id="loginMessage"></p>
-  </div>
+  <main>
+    <section class="card" id="home">
+      <h2>Welcome to CareerPilot AI</h2>
+      <p>Learn smarter. Build skills. Prepare for your future.</p>
+      <button onclick="showPage('dashboard')">Student Dashboard</button>
+      <button onclick="showPage('study')">AI Study Assistant</button>
+      <button onclick="showPage('career')">Career Roadmap</button>
+      <button onclick="showPage('coding')">Coding Practice</button>
+    </section>
 
-  <div class="container" id="dashboard" hidden>
-    <h2>Student Dashboard</h2>
-    <p id="welcomeMessage">Welcome, Student!</p>
-    <input id="subject" type="text" placeholder="Enter subject or task">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
-    <button onclick="goHome()">Home</button>
-  </div>
+    <section class="card" id="dashboard" hidden>
+      <h2>📚 Student Dashboard</h2>
+      <p>Track your daily learning tasks.</p>
+      <input id="taskInput" placeholder="Enter your study task">
+      <button onclick="addTask()">Add Task</button>
+      <ul id="taskList"></ul>
+      <button onclick="showPage('home')">Home</button>
+    </section>
+
+    <section class="card" id="study" hidden>
+      <h2>🤖 AI Study Assistant</h2>
+      <p>Ask a study question. Connect an AI backend to enable AI answers.</p>
+      <textarea id="studyQuestion" placeholder="Ask your question..."></textarea>
+      <button onclick="askStudy()">Submit Question</button>
+      <p id="studyAnswer"></p>
+      <button onclick="showPage('home')">Home</button>
+    </section>
+
+    <section class="card" id="career" hidden>
+      <h2>🎯 Career Roadmap</h2>
+      <ul>
+        <li>Learn programming fundamentals</li>
+        <li>Practice Data Structures and Algorithms</li>
+        <li>Build real-world projects</li>
+        <li>Create a strong GitHub portfolio</li>
+        <li>Prepare for internships and interviews</li>
+      </ul>
+      <button onclick="showPage('home')">Home</button>
+    </section>
+
+    <section class="card" id="coding" hidden>
+      <h2>💻 Coding Practice</h2>
+      <p>Start with these beginner topics:</p>
+      <ul>
+        <li>Variables and data types</li>
+        <li>Conditions and loops</li>
+        <li>Arrays and strings</li>
+        <li>Functions</li>
+      </ul>
+      <button onclick="showPage('home')">Home</button>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
