@@ -1,22 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Management System</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="container" id="home">
+    <h1>Student Management System</h1>
+    <p>Welcome to my Student Management System.</p>
+    <button onclick="login()">Login</button>
+    <button onclick="openDashboard()">Student Dashboard</button>
+  </div>
 
-    <div class="container">
+  <div class="container" id="loginPage" hidden>
+    <h2>Student Login</h2>
+    <input id="studentName" type="text" placeholder="Enter your name">
+    <button onclick="enterDashboard()">Continue</button>
+    <button onclick="goHome()">Back</button>
+    <p id="loginMessage"></p>
+  </div>
 
-        <h1>Student Management System</h1>
+  <div class="container" id="dashboard" hidden>
+    <h2>Student Dashboard</h2>
+    <p id="welcomeMessage">Welcome, Student!</p>
+    <input id="subject" type="text" placeholder="Enter subject or task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+    <button onclick="goHome()">Home</button>
+  </div>
 
-        <p>Welcome to my Student Management System</p>
-
-        <button>Login</button>
-        <button>Student Dashboard</button>
-
-    </div>
-
+  <script src="script.js"></script>
 </body>
 </html>
