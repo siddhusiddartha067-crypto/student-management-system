@@ -1,55 +1,70 @@
-function login() {
-  document.getElementById("home").hidden = true;
-  document.getElementById("dashboard").hidden = true;
-  document.getElementById("loginPage").hidden = false;
-}
+function showPage(pageId) {
+  const pages = ["home", "dashboard", "study", "career", "coding"];
 
-function openDashboard() {
-  document.getElementById("home").hidden = true;
-  document.getElementById("loginPage").hidden = true;
-  document.getElementById("dashboard").hidden = false;
-}
-
-function enterDashboard() {
-  const name = document.getElementById("studentName").value.trim();
-
-  if (!name) {
-    document.getElementById("loginMessage").textContent =
-      "Please enter your name.";
-    return;
-  }
-
-  document.getElementById("welcomeMessage").textContent =
-    "Welcome, " + name + "!";
-  document.getElementById("loginPage").hidden = true;
-  document.getElementById("dashboard").hidden = false;
+  pages.forEach(function (id) {
+    document.getElementById(id).hidden = id !== pageId;
+  });
 }
 
 function addTask() {
-  const input = document.getElementById("subject");
+  const input = document.getElementById("taskInput");
   const task = input.value.trim();
 
   if (!task) {
-    alert("Please enter a subject or task.");
+    alert("Please enter a task!");
     return;
   }
 
   const li = document.createElement("li");
   li.textContent = task + " ";
 
-  const removeButton = document.createElement("button");
-  removeButton.textContent = "Delete";
-  removeButton.onclick = function () {
+  const remove = document.createElement("button");
+  remove.textContent = "Delete";
+  remove.onclick = function () {
     li.remove();
+    saveTasks();
   };
 
-  li.appendChild(removeButton);
+  li.appendChild(remove);
   document.getElementById("taskList").appendChild(li);
   input.value = "";
+  saveTasks();
 }
 
-function goHome() {
-  document.getElementById("loginPage").hidden = true;
-  document.getElementById("dashboard").hidden = true;
-  document.getElementById("home").hidden = false;
+function saveTasks() {
+  const tasks = Array.from(
+    document.querySelectorAll("#taskList > li")
+  ).map(function (li) {
+    return li.firstChild.textContent.trim();
+  });
+
+  localStorage.setItem("careerPilotTasks", JSON.stringify(tasks));
 }
+
+function loadTasks() {
+  const tasks = JSON.parse(
+    localStorage.getItem("careerPilotTasks") || "[]"
+  );
+
+  tasks.forEach(function (task) {
+    const input = document.getElementById("taskInput");
+    input.value = task;
+    addTask();
+  });
+}
+
+function askStudy() {
+  const question = document.getElementById("studyQuestion").value.trim();
+  const answer = document.getElementById("studyAnswer");
+
+  if (!question) {
+    answer.textContent = "Please enter your question first.";
+    return;
+  }
+
+  answer.textContent =
+    "AI is not connected yet. A secure AI backend is needed to answer: " +
+    question;
+}
+
+window.addEventListener("DOMContentLoaded", loadTasks);
